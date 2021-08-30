@@ -6,11 +6,11 @@ import com.google.gson.annotations.SerializedName;
 
 public class specifications<T>{
 	
-	@SerializedName(value = "Originally published", alternate = "originallyPublished")
+	@SerializedName("originallyPublished")
 	private String originallyPublished;
 	private String Author;
 	
-	@SerializedName(value = "Page count", alternate = "pageCount")
+	@SerializedName("pageCount")
 	private int pageCount;
 	private T Illustrator;
 	

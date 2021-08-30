@@ -3,21 +3,21 @@ package entities;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-public class Livros {
-	
+public class Livros<T> {
 	private int id;
 	private String name;
 	private Double price;
 	private specifications specifications;
 
 	public Livros() {
-		
+
 	}
 
 	public Livros(int id, String name, Double price, entities.specifications specifications) {
@@ -56,33 +56,43 @@ public class Livros {
 		return specifications;
 	}
 
-	
 	public void setSpecifications(specifications specifications) {
 		this.specifications = specifications;
 	}
 
 	@Override
 	public String toString() {
-		return "Livros [id=" + id + ", name=" + name + ", price=" + price + ", specifications=" + specifications
-				+ "]";
+		return "Livros [id=" + id + ", name=" + name + ", price=" + price + ", specifications=" + specifications + "]";
 	}
-	
-	public void mostra() throws FileNotFoundException {
+
+	public void mostra( T s) throws FileNotFoundException {
+		
+		List<? extends Livros > list =  new ArrayList<>();
+		List<? super Object> lista = new ArrayList<>();
+		
 		FileReader file = new FileReader("src\\application\\books.json");
-		
-		Type type = new TypeToken<List<Livros>>(){}.getType();
-		
+
+		Type type = new TypeToken<List<Livros>>() {
+		}.getType();
+
 		Gson gson = new GsonBuilder().create();
-		
+
 		List<Livros> livro = gson.fromJson(file, type);
-		
+
 		for (Livros livros : livro) {
-			
-			System.out.println(livros.getSpecifications().getIllustrator());
+			lista.add(livros.getId());
+			lista.add(livros.getName());
+			lista.add(livros.getPrice());
+			lista.add(livros.getSpecifications().getAuthor());
 		}
-	      
-		
+		if (list.contains(s)) {
+			for(Object li : list) {
+				System.out.println(li);
+			}
+		}
+
 	}
 	
+
 
 }
