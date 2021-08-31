@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 public class Livros<T> {
@@ -20,7 +19,7 @@ public class Livros<T> {
 
 	}
 
-	public Livros(int id, String name, Double price, entities.specifications specifications) {
+	public Livros(int id, String name, Double price, specifications specifications) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -62,37 +61,37 @@ public class Livros<T> {
 
 	@Override
 	public String toString() {
-		return "Livros [id=" + id + ", name=" + name + ", price=" + price + ", specifications=" + specifications + "]";
-	}
-
-	public void mostra( T s) throws FileNotFoundException {
-		
-		List<? extends Livros > list =  new ArrayList<>();
-		List<? super Object> lista = new ArrayList<>();
-		
-		FileReader file = new FileReader("src\\application\\books.json");
-
-		Type type = new TypeToken<List<Livros>>() {
-		}.getType();
-
-		Gson gson = new GsonBuilder().create();
-
-		List<Livros> livro = gson.fromJson(file, type);
-
-		for (Livros livros : livro) {
-			lista.add(livros.getId());
-			lista.add(livros.getName());
-			lista.add(livros.getPrice());
-			lista.add(livros.getSpecifications().getAuthor());
-		}
-		if (list.contains(s)) {
-			for(Object li : list) {
-				System.out.println(li);
-			}
-		}
-
+		return "Livros \n"
+				+ "[id=" + id  
+				+ ", name=" + name 
+				+ ", price=" + price 
+				+ ", specifications=" + specifications 
+				+ "]";
 	}
 	
 
+	public void mostra(T e) throws FileNotFoundException {
+		
+		FileReader file = new FileReader("src\\application\\books.json");
 
+		Type type = new TypeToken<List<Livros>>() {}.getType();
+
+		Gson gson = new Gson();
+		
+		List<Livros> livro = gson.fromJson(file, type);	
+		
+		//System.out.println(livro.get(2).getSpecifications().getAuthor());
+
+		for(int i = 0; i < livro.size(); i++) {	
+			if(livro.get(i).getPrice().equals(e)) {
+				System.out.println(livro.get(i).getId());
+		}
+			if(livro.get(i).getName().equals(e)) {
+				System.out.println(livro.get(i).getId());
+			}
+			if (livro.get(i).getSpecifications().getAuthor().equals(e)) {
+				System.out.println(livro.get(i).getId());	
+			}
+		}
+	}
 }

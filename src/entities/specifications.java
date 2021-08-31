@@ -6,16 +6,19 @@ import com.google.gson.annotations.SerializedName;
 
 public class specifications<T>{
 	
-	@SerializedName("originallyPublished")
+	@SerializedName(value="Originally published",alternate = "originallyPublished")
 	private String originallyPublished;
 	private String Author;
 	
-	@SerializedName("pageCount")
+	@SerializedName(value = "Page count", alternate = "pageCount")
 	private int pageCount;
 	private T Illustrator;
 	
 	private T Genres;
-
+	
+	public specifications(){
+		
+	}
 	
 	public specifications( String originallyPublished, String author, int pageCount, List<String> illustrator, T genres) {
 		this.originallyPublished = originallyPublished;
@@ -71,8 +74,10 @@ public class specifications<T>{
 
 	@Override
 	public String toString() {
-		return "specifications [originallyPublished=" + originallyPublished + ", Author=" + Author + ", pageCount="
-				+ pageCount + ", Genres=" + Genres + ", Genre=" + Genres + "]";
+		return "specifications \n [originallyPublished=" + originallyPublished 
+				+ ", Author=" + Author 
+				+ ", pageCount=" + pageCount 
+				+ ", Genres=" + Genres + "]\n";
 	}
 
 }
