@@ -1,7 +1,5 @@
 package entities;
 
-import java.util.List;
-
 import com.google.gson.annotations.SerializedName;
 
 public class specifications<T>{
@@ -13,24 +11,16 @@ public class specifications<T>{
 	@SerializedName(value = "Page count", alternate = "pageCount")
 	private int pageCount;
 	private T Illustrator;
-	
 	private T Genres;
-	
-	public specifications(){
-		
-	}
-	
-	public specifications( String originallyPublished, String author, int pageCount, List<String> illustrator, T genres) {
+
+	public specifications( String originallyPublished, String author, int pageCount, T illustrator, T genres) {
 		this.originallyPublished = originallyPublished;
 		Author = author;
 		this.pageCount = pageCount;
-		//Illustrator = illustrator;
+		Illustrator = illustrator;
 		Genres = genres;
 	}
-	public specifications(T Genres) {
-		this.Genres = Genres;
-	}
-
+	
 	public String getOriginallyPublished() {
 		return originallyPublished;
 	}
@@ -64,7 +54,6 @@ public class specifications<T>{
 	}
 	
 	public T getGenres() {
-
 		return Genres;
 	}
 
@@ -74,10 +63,10 @@ public class specifications<T>{
 
 	@Override
 	public String toString() {
-		return "specifications \n [originallyPublished=" + originallyPublished 
-				+ ", Author=" + Author 
-				+ ", pageCount=" + pageCount 
-				+ ", Genres=" + Genres + "]\n";
+		return "\n Originally Published: " + originallyPublished 
+				+ " Author: " + Author + "\n" 
+				+ " Page Count: " + pageCount + "\n"
+				+ " Genres: " + Genres + "\n";
 	}
 
 }
