@@ -1,6 +1,7 @@
 package entities;
 
-public class Livros<T> {
+@SuppressWarnings("rawtypes")
+public class Livros<T> implements Comparable<Livros> {
 	private int id;
 	private String name;
 	private Double price;
@@ -54,5 +55,10 @@ public class Livros<T> {
 				+ " Name: " + name +"\n"
 				+ " Price: " + price  +"\n"
 				+ " Specifications: " + specifications;
+	}
+
+	@Override
+	public int compareTo(Livros o) {
+		return price.compareTo(o.getPrice());
 	}
 }

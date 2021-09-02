@@ -33,14 +33,12 @@ public class Controller {
 			livro = gson.fromJson(file, type);
 			
 			for (int i = 0; i < livro.size(); i++) {
-
+				
 				if (livro.get(i).getName().equals(e)) {
 					System.out.println(livro.get(i));
-					
 				}
 				if (livro.get(i).getSpecifications().getAuthor().equals(e)) {
 					System.out.println(livro.get(i));
-					
 				}
 
 				if (livro.get(i).getPrice().equals(e)) {
@@ -52,6 +50,8 @@ public class Controller {
 			e1.printStackTrace();
 		}
 		sc.close();
+		
+		sort(livro);
 
 	}
 
@@ -89,10 +89,14 @@ public class Controller {
 		}
 		sc.close();
 	}
-
-	public void listaOrdenada() {
-
+	
+	@SuppressWarnings("unchecked")
+	public static <T> void sort ( List<Livros> list) {
 		
-
-	}
+		Collections.sort(list);
+		
+		for(Livros s : list) {
+			System.out.println(s);
+		}
+	}	
 }

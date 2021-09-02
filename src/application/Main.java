@@ -12,6 +12,7 @@ public class Main {
 		
 		Controller ct = new Controller();
 		ct.pesquisa();
+		
 	}
 
 }
