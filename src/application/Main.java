@@ -10,8 +10,9 @@ public class Main {
 		View menu = new View();
 		menu.layout();
 		
+		@SuppressWarnings("rawtypes")
 		Controller ct = new Controller();
-		ct.pesquisa();
+		ct.mostra();
 		
 	}
 

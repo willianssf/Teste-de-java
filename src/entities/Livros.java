@@ -4,13 +4,13 @@ package entities;
 public class Livros<T> implements Comparable<Livros> {
 	private int id;
 	private String name;
-	private Double price;
+	private String price;
 	private specifications<?> specifications;
 	
 	public Livros() {
 	}
 
-	public Livros(int id, String name, Double price, specifications<?> specifications) {
+	public Livros(int id, String name, String price, specifications<?> specifications) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
@@ -33,11 +33,11 @@ public class Livros<T> implements Comparable<Livros> {
 		this.name = name;
 	}
 
-	public Double getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
