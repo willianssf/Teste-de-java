@@ -3,6 +3,7 @@ package entities.controller;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -18,8 +19,8 @@ public class Controller {
 
 	private List<Livros> livro;
 
-	public <T> void mostra( T e) {
-		
+	public <T> void mostra(T e) {
+
 		Scanner sc = new Scanner(System.in);
 
 		FileReader file;
@@ -28,30 +29,18 @@ public class Controller {
 
 			Gson gson = new Gson();
 
-			Type type = new TypeToken<List<Livros>>(){}.getType();
+			Type type = new TypeToken<List<Livros>>() {
+			}.getType();
 
 			livro = gson.fromJson(file, type);
 			
-			for (int i = 0; i < livro.size(); i++) {
+			Collections.sort(livro, Collections.reverseOrder());
 				
-				if (livro.get(i).getName().equals(e)) {
-					System.out.println(livro.get(i));
-				}
-				if (livro.get(i).getSpecifications().getAuthor().equals(e)) {
-					System.out.println(livro.get(i));
-				}
-
-				if (livro.get(i).getPrice().equals(e)) {
-					System.out.println(livro.get(i));
-					
-				}
-			}
+			
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
 		sc.close();
-		
-		sort(livro);
 
 	}
 
@@ -89,14 +78,5 @@ public class Controller {
 		}
 		sc.close();
 	}
-	
-	@SuppressWarnings("unchecked")
-	public static <T> void sort ( List<Livros> list) {
-		
-		Collections.sort(list);
-		
-		for(Livros s : list) {
-			System.out.println(s);
-		}
-	}	
+
 }
