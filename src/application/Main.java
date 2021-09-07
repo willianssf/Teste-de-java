@@ -12,7 +12,7 @@ public class Main {
 		
 		@SuppressWarnings("rawtypes")
 		Controller ct = new Controller();
-		ct.mostra();
+		ct.buscaLivro();
 		
 	}
 
